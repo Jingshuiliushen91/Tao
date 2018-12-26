@@ -19,18 +19,18 @@ class artical_analyzer:
 
     def list_words_counter(self, words, csv_url, col):
         counter = 0
+        l = 0
         with open(csv_url) as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 wordList = re.sub("[^\w]", " ", row[col]).split()
+                print("**********************<" + l + " out of " + len(row) + ">**********************")
                 for w in words:
-                    print(w + " is processing ...")
                     for singleword in wordList:
                         if (singleword.lower() == w.lower()):
-                            print("find " + singleword.lower() + " and " + w.lower())
                             counter += 1
-                            print("counter: " + str(counter))
-
+                print("counter: " + str(counter))
+                l += 1;
         return counter
 
 
